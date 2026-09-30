@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skull Kid - Flash Game</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #flash-container {
+            width: 550px;  /* Standard resolution for Skull Kid */
+            height: 400px; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container where the SWF will load -->
+    <div id="flash-container"></div>
+
+    <!-- Load Ruffle from public CDN -->
+    <script src="https://unpkg.com"></script>
+    
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("flash-container");
+            container.appendChild(player);
+            
+            // Pointing directly to your Skull Kid file
+            player.load("skullkid.swf"); 
+        });
+    </script>
+
+</body>
+</html>
