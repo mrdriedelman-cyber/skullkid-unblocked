@@ -38,6 +38,24 @@
             player.load("skullkid.swf"); 
         });
     </script>
+    <!-- Load Ruffle from public CDN -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    
+    <script>
+        // Safely declare the global variable so it isn't undefined
+        window.RufflePlayer = window.RufflePlayer || {}; 
+
+        // Wait for the full window (and the external CDN script) to load
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("flash-container");
+            container.appendChild(player);
+            
+            // Pointing directly to your Skull Kid file
+            player.load("skullkid.swf"); 
+        });
+    </script>
 
 </body>
 </html>
