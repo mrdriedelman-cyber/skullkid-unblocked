@@ -21,38 +21,27 @@
 </head>
 <body>
 
-    <!-- Container where the SWF will load -->
+    <!-- ONLY ONE container element -->
     <div id="flash-container"></div>
 
-    <!-- Load Ruffle from public CDN -->
-    <script src="https://unpkg.com"></script>
-
-    <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            const container = document.getElementById("flash-container");
-            container.appendChild(player);
-
-            // Pointing directly to your Skull Kid file
-            player.load("skullkid.swf"); 
-        });
-    </script>
-    <!-- Load Ruffle from public CDN -->
+    <!-- ONLY ONE script tag loading Ruffle from UNPKG -->
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     
+    <!-- ONLY ONE script running the configuration logic -->
     <script>
-        // Safely declare the global variable so it isn't undefined
-        window.RufflePlayer = window.RufflePlayer || {}; 
+        // 1. Tell the Ruffle browser extension not to double-inject itself
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.RufflePlayer.config = {
+            "polyfillOptOut": true
+        };
 
-        // Wait for the full window (and the external CDN script) to load
+        // 2. Load the game safely after everything is ready
         window.addEventListener("load", (event) => {
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
             const container = document.getElementById("flash-container");
             container.appendChild(player);
             
-            // Pointing directly to your Skull Kid file
             player.load("skullkid.swf"); 
         });
     </script>
